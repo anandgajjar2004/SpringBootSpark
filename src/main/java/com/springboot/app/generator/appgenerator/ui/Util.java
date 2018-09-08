@@ -71,8 +71,7 @@ public class Util {
 		return listOfFiles;
 	}
 	
-	public static void addToZipFile(String fileName, ZipOutputStream zos) throws FileNotFoundException, IOException {
-		System.out.println(fileName);
+	public static void addToZipFile(String fileName, ZipOutputStream zos) throws FileNotFoundException, IOException {		
 		File file = new File(fileName);
 		FileInputStream fis = new FileInputStream(file);
 		ZipEntry zipEntry = new ZipEntry(fileName);
