@@ -5,11 +5,9 @@ app.controller('MainCotroller', function($scope, $http) {
 	{
 			"applicationName" : '', 
 			"packageName" : '',
-			"listOfEntities" : [{"name":"Student","listOfFields":[{"type":"String","fieldName":"firstName"},{"type":"String","fieldName":"lastName"}]}]			
+			"listOfEntities" : [{"name":"Student","listOfFields":[{"type":"String","fieldName":"firstName"},{"type":"String","fieldName":"lastName"}]},
+								{"name":"User","listOfFields":[{"type":"String","fieldName":"firstName"},{"type":"String","fieldName":"lastName"}]}]			
 			};
-
-	$scope.entity = [{ name: "", fields : [{name: "", type: ""}]}]; 
-
     $scope.createApp = function(fields)
     {
     	data = fields;
@@ -28,9 +26,9 @@ app.controller('MainCotroller', function($scope, $http) {
 		  });
     };	
 
-    $scope.addEntity = function()
+    $scope.addEntity = function(fields)
     {
-    	$scope.entity.push({name: "", fields : [{name: "", type: ""}]});
+    	fields.listOfEntities.push({name: "", listOfFields : [{name: "", type: ""}]});
     };		
     
     $scope.addField = function(field)

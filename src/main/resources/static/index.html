@@ -1,6 +1,6 @@
 <html ng-app="angularAppGenerator" ng-controller="MainCotroller">
 <head>
-	<title>Angular App Generator</title>
+	<title>Spring Boot Application Generator</title>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
@@ -8,20 +8,24 @@
 	<script src="js/script.js"></script>
 </head>
 <body>
-
-
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">      
+      <a class="navbar-brand" href="#">Spring Boot Application Generator</a>
+    </div>
+  </div>
+</nav>
 <form role="form">
 
 <div class="container-fluid">
-
-<div class="row">
 Application Name : <input type="text" placeholder="SpringDemo" ng-model="fields.applicationName" />
 Package Name : <input type="text" placeholder="com.company.spring" ng-model="fields.packageName" "/>
 <br/><br/>
 
 <div class="col-sm-6 col-md-3" ng-repeat="e in fields.listOfEntities">
     <div class="thumbnail">						
-	<input placeholder="Entity Class Name" type="text" name="name" ng-model="e.name" style="margin-top: 8px;margin-left: 5px;"/>
+	<input  placeholder="Entity Class Name" type="text" name="name" ng-model="e.name" style="margin-top: 8px;margin-left: 5px;"/>
  			<table border="0">			
 				<tr ng-repeat="f in e.listOfFields">				
 				<td nowrap>
@@ -35,18 +39,21 @@ Package Name : <input type="text" placeholder="com.company.spring" ng-model="fie
 						<option value="String">double</option>						
 					</select>
 					
-					<a ng-click="deleteField(e.fields)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+					<a ng-click="deleteField(e.listOfFields)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
 				</td>
 				
 				</tr>				
 			</table><br/>			
-				<a class="btn btn-default" ng-click="addField(e.fields)">Add New Field</a>
+				<a class="btn btn-default" ng-click="addField(e.listOfFields)">Add New Field</a>
 	
       
     </div>
   </div>
+  	<div class="col-sm-12">
+  	<a class="btn btn-primary" ng-click="addEntity(fields)">Add Entity Class</a> (eg, Customer, User, Product, etc...)
+  	</div>
   </div>
-  <a class="btn btn-primary" ng-click="addEntity()">Add Entity Class</a> (eg, Customer, User, Product, etc...)
+  
   <br/><br/>
   <br/><br/><br/><br/>
   <hr/>
@@ -54,10 +61,5 @@ Package Name : <input type="text" placeholder="com.company.spring" ng-model="fie
   <button id="export" download="" ng-click="createApp(fields);" type="submit" class="btn btn-default">Download Zip File</button>
   </div>
 </form>
-</div>
-</div>
-<script>
-
-</script>
 </body>
 </html>
