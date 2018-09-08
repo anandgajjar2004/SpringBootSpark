@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.springboot.app.generator</groupId>
-	<artifactId>app-generator</artifactId>
+	<artifactId>spring-boot-app-generator</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>app-generator</name>
-	<description>Demo project for Spring Boot</description>
+	<name>spring-boot-app-generator</name>
+	<description>Generate All required Classes for Given Entity</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
