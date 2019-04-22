@@ -50,27 +50,51 @@ public class ClassGenerator {
 		{
 			File dir = new File(s);
 			dir.mkdir();
-		}							
+		}		
+		
+		String entityDirectory = filePath+"/domain";
+		File dir = new File(entityDirectory);			
+		dir.mkdir();
+		String repositoryDirectory = filePath+"/repository";
+		dir = new File(repositoryDirectory);			
+		dir.mkdir();
+		String controllerDirectory = filePath+"/controller";
+		dir = new File(controllerDirectory);			
+		dir.mkdir();
+		String serviceInterfaceDirectory = filePath+"/service";
+		dir = new File(serviceInterfaceDirectory);			
+		dir.mkdir();
+		String serviceImplementationDirectory = filePath+"/service/impl";
+		dir = new File(serviceImplementationDirectory);			
+		dir.mkdir();
+		String templateDirectory = "templates";		
+		dir = new File(templateDirectory);
+		dir.mkdir();
+		String templateEntityDirectory = templateDirectory+"/"+entity.getEntityNameInLowerCase();
+		dir = new File(templateEntityDirectory);			
+		dir.mkdir();
+		
+		
 	            			    
-		String fileNane = createEntityClass();
+		String fileNane = createEntityClass(entityDirectory);
 		Util.addToZipFile(fileNane, zos);	
-		fileNane = createRepositoryInterface();
+		fileNane = createRepositoryInterface(repositoryDirectory);
 		Util.addToZipFile(fileNane, zos);
-		fileNane = createController();
+		fileNane = createController(controllerDirectory);
 		Util.addToZipFile(fileNane, zos);
-		fileNane = createServiceInterface();
+		fileNane = createServiceInterface(serviceInterfaceDirectory);
 		Util.addToZipFile(fileNane, zos);
-		fileNane = createServiceInterfaceImplementation();
+		fileNane = createServiceInterfaceImplementation(serviceImplementationDirectory);
 		Util.addToZipFile(fileNane, zos);
-		fileNane = createFormHtmlFile();
+		fileNane = createFormHtmlFile(templateEntityDirectory);
 		Util.addToZipFile(fileNane, zos);
-		fileNane = createAddHtmlFile();		
+		fileNane = createAddHtmlFile(templateEntityDirectory);		
 		Util.addToZipFile(fileNane, zos);
-		fileNane = createEditHtmlFile();		
+		fileNane = createEditHtmlFile(templateEntityDirectory);		
 		Util.addToZipFile(fileNane, zos);		
-		fileNane = createViewHtmlFile();
+		fileNane = createViewHtmlFile(templateEntityDirectory);
 		Util.addToZipFile(fileNane, zos);
-		fileNane = createListHtmlFile();
+		fileNane = createListHtmlFile(templateEntityDirectory);
 		Util.addToZipFile(fileNane, zos);		
 		zos.close();
 		fos.close();
@@ -83,14 +107,11 @@ public class ClassGenerator {
 	    }	
 	}			
 	
-	private String createEntityClass()
+	private String createEntityClass(String entityDirectory)
 	{
-		String fileName = filePath+"/domain/"+entity.getName()+ ".java";
+		String fileName = entityDirectory+"/"+entity.getName()+ ".java";
 		
 		try {
-			File dir = new File(filePath+"/domain");			
-			dir.mkdir();
-
 			FileWriter fileWriter = new FileWriter(fileName);
 			fileWriter.write(System.lineSeparator());
 			fileWriter.write("package "+packageName+".domain;");
@@ -166,13 +187,10 @@ public class ClassGenerator {
 		return fileName;
 	}
 	
-	private String createRepositoryInterface()
+	private String createRepositoryInterface(String repositoryDirectory)
 	{
-		String fileName = filePath+"/repository/"+entity.getName() + "Repository.java";
+		String fileName = repositoryDirectory+"/"+entity.getName() + "Repository.java";
 		try {						
-			File dir = new File(filePath+"/repository");			
-			dir.mkdir();
-			
 			FileWriter fileWriter = new FileWriter(fileName);
 			fileWriter.write("package "+packageName+".repository;");
 			fileWriter.write(System.lineSeparator());
@@ -192,12 +210,10 @@ public class ClassGenerator {
 		return fileName;
 	}
 	
-	private String createServiceInterface()
+	private String createServiceInterface(String serviceInterfaceDirectory)
 	{
-		String fileName = filePath+"/service/"+entity.getName() + "Service.java";
-		try {
-			File dir = new File(filePath+"/service");			
-			dir.mkdir();
+		String fileName = serviceInterfaceDirectory+"/"+entity.getName() + "Service.java";
+		try {			
 			FileWriter fileWriter = new FileWriter(fileName);
 			fileWriter.write("package "+packageName+".service;");
 			fileWriter.write(System.lineSeparator());
@@ -232,12 +248,10 @@ public class ClassGenerator {
 		return fileName;
 	}	
 	
-	private String createServiceInterfaceImplementation()
+	private String createServiceInterfaceImplementation(String serviceImplementationDirectory)
 	{
-		String fileName = filePath+"/service/impl/"+entity.getName() + "SerciceImpl.java";
-		try {
-			File dir = new File(filePath+"/service/impl");			
-			dir.mkdir();			
+		String fileName = serviceImplementationDirectory+"/"+entity.getName() + "SerciceImpl.java";
+		try {		
 			FileWriter fileWriter = new FileWriter(fileName);
 			fileWriter.write("package "+packageName+".service.impl;");
 			fileWriter.write(System.lineSeparator());					
@@ -313,13 +327,10 @@ public class ClassGenerator {
 		return fileName;
 	}
 	
-	private String createController()
+	private String createController(String controllerDirectory)
 	{		
-		String fileName = filePath+"/controller/"+entity.getName() + "Controller.java";
+		String fileName = controllerDirectory+"/"+entity.getName() + "Controller.java";
 		try {
-			File dir = new File(filePath+"/controller");			
-			dir.mkdir();
-			
 			FileWriter fileWriter = new FileWriter(fileName);			
 			fileWriter.write("package "+packageName+".controller;");
 			fileWriter.write(System.lineSeparator());
@@ -336,9 +347,7 @@ public class ClassGenerator {
 			fileWriter.write(System.lineSeparator());
 			fileWriter.write("import org.springframework.ui.Model;");
 			fileWriter.write(System.lineSeparator());
-			fileWriter.write("import org.springframework.validation.BindingResult;");
-			fileWriter.write(System.lineSeparator());
-			fileWriter.write("import org.springframework.web.bind.annotation.DeleteMapping;");
+			fileWriter.write("import org.springframework.validation.BindingResult;");						
 			fileWriter.write(System.lineSeparator());
 			fileWriter.write("import org.springframework.web.bind.annotation.GetMapping;");
 			fileWriter.write(System.lineSeparator());
@@ -455,16 +464,10 @@ public class ClassGenerator {
 		return fileName;
 	}
 	
-	private String createFormHtmlFile() 
+	private String createFormHtmlFile(String templateEntityDirectory) 
 	{
-		File dir = new File("templates");
-		dir.mkdir();
-		
-		String fileName = "templates/"+entity.getEntityNameInLowerCase() + "/_form.html";
+		String fileName = templateEntityDirectory + "/_form.html";
 		try {
-			dir = new File("templates/"+entity.getEntityNameInLowerCase());			
-			dir.mkdir();
-			
 			FileWriter fileWriter = new FileWriter(fileName);
 			
 			fileWriter.write("<div th:fragment=\""+entity.getEntityNameInLowerCase()+"Form\">");
@@ -496,16 +499,13 @@ public class ClassGenerator {
 		return fileName;
 	}
 	
-	private String createAddHtmlFile()
+	private String createAddHtmlFile(String templateEntityDirectory)
 	{	
 		File dir = new File("templates");
 		dir.mkdir();
 		
-		String fileName = "templates/"+entity.getEntityNameInLowerCase() + "/new.html";
+		String fileName = templateEntityDirectory + "/new.html";
 		try {
-			dir = new File("templates/"+entity.getEntityNameInLowerCase());			
-			dir.mkdir();
-			
 			FileWriter fileWriter = new FileWriter(fileName);			
 			fileWriter.write("<!DOCTYPE html>");
 			fileWriter.write(System.lineSeparator());
@@ -540,16 +540,13 @@ public class ClassGenerator {
 		return fileName;
 	}
 	
-	private String createEditHtmlFile()
+	private String createEditHtmlFile(String templateEntityDirectory)
 	{	
 		File dir = new File("templates");
 		dir.mkdir();
 		
-		String fileName = "templates/"+entity.getEntityNameInLowerCase() + "/edit.html";
-		try {
-			dir = new File("templates/"+entity.getEntityNameInLowerCase());			
-			dir.mkdir();
-			
+		String fileName = templateEntityDirectory + "/edit.html";
+		try {			
 			FileWriter fileWriter = new FileWriter(fileName);			
 			fileWriter.write("<!DOCTYPE html>");
 			fileWriter.write(System.lineSeparator());
@@ -585,13 +582,10 @@ public class ClassGenerator {
 		return fileName;
 	}
 	
-	private String createViewHtmlFile()
+	private String createViewHtmlFile(String templateEntityDirectory)
 	{		
-		String fileName = "templates/"+entity.getEntityNameInLowerCase() + "/show.html";
+		String fileName = templateEntityDirectory + "/show.html";
 		try {
-			File dir = new File("templates/"+entity.getEntityNameInLowerCase());			
-			dir.mkdir();
-			
 			FileWriter fileWriter = new FileWriter(fileName);			
 			fileWriter.write("<!DOCTYPE html>");
 			fileWriter.write(System.lineSeparator());
@@ -639,12 +633,10 @@ public class ClassGenerator {
 		return fileName;
 	}
 	
-	private String createListHtmlFile()
+	private String createListHtmlFile(String templateEntityDirectory)
 	{		
-		String fileName = "templates/"+entity.getEntityNameInLowerCase() + "/index.html";
+		String fileName = templateEntityDirectory + "/index.html";
 		try {
-			File dir = new File("templates/"+entity.getEntityNameInLowerCase());			
-			dir.mkdir();
 			FileWriter fileWriter = new FileWriter(fileName);
 			fileWriter.write("<!DOCTYPE html>");			
 			fileWriter.write(System.lineSeparator());
