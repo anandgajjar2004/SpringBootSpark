@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springboot.app.generator.appgenerator.entity.Application;
+import com.springboot.app.generator.appgenerator.entity.Field;
 import com.springboot.app.generator.appgenerator.logic.ClassGenerator;
 
 @RestController
@@ -25,8 +26,44 @@ public class FileController {
 	@RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/octet-stream")
 	public String  generateFile(@RequestBody Application application) {
 		
-		ClassGenerator generator = new ClassGenerator();
-		generator.generate(application.getApplicationName(), application.getPackageName(), application.getListOfEntities());
+		String entityName = application.getEntity().getName();
+		entityName  = entityName.substring(0, 1).toUpperCase().concat(entityName.substring(1, entityName.length()));
+		String entityNameInLowerCase = entityName.toLowerCase();
+		String entityNameInPluralForm = null;
+		if(entityNameInLowerCase.substring(entityNameInLowerCase.length()-1).equals("y")) {
+			entityNameInPluralForm = entityNameInLowerCase.substring(0, entityNameInLowerCase.length()-1)+"ies";
+		} else {
+			entityNameInPluralForm = entityNameInLowerCase+"s";
+		}
+		
+		for(Field field : application.getEntity().getListOfFields()) {
+				String fieldName = field.getFieldName();
+				String camelCaseString = "";
+				if(fieldName.split("_").length > 1) {
+					for(String  s: fieldName.split("_")) {
+						camelCaseString = camelCaseString + s.substring(0, 1).toUpperCase() +s.substring(1).toLowerCase();
+					}
+					fieldName = camelCaseString.substring(0, 1).toLowerCase().concat(camelCaseString.substring(1, camelCaseString.length()));
+				} else {					
+					fieldName = fieldName.substring(0, 1).toLowerCase().concat(fieldName.substring(1, fieldName.length()));
+				}
+				field.setFieldName(fieldName);
+				String type = field.getType();				
+				
+				type = type.substring(0, 1).toUpperCase() + type.substring(1, type.length());
+				String displayName = fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1, fieldName.length()).replaceAll("(.)([A-Z])", "$1 $2");
+				String setMethodName =  "set"+fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1, fieldName.length());
+				String getMethodName =  "get"+fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1, fieldName.length());
+				
+				field.setDisplayName(displayName);
+				field.setSetMethodName(setMethodName);
+				field.setGetMethodName(getMethodName);				
+			}
+		application.getEntity().setEntityNameInLowerCase(entityNameInLowerCase);
+		application.getEntity().setEntityNameInPluralForm(entityNameInPluralForm);
+		
+		ClassGenerator generator = new ClassGenerator(application);
+		generator.generate();
 		return "Success";
 		
 	}

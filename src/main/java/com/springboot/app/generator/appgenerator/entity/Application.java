@@ -1,36 +1,34 @@
 package com.springboot.app.generator.appgenerator.entity;
 
-import java.util.List;
-
-
-
 public class Application {
-	
-	private String packageName;
 	private String applicationName;
-	private List<Entity> listOfEntities;
-	
-	
-	public String getApplicationName() {
-		return applicationName;
-	}
-	public void setApplicationName(String applicationName) {
+	private String packageName;	
+	private Entity entity;
+		
+	public Application(String applicationName, String packageName, Entity entity) {
 		this.applicationName = applicationName;
+		this.packageName = packageName;
+		this.entity = entity;
 	}
+	
 	public String getPackageName() {
 		return packageName;
 	}
 	public void setPackageName(String packageName) {
 		this.packageName = packageName;
 	}
-	public List<Entity> getListOfEntities() {
-		return listOfEntities;
+	public Entity getEntity() {
+		return entity;
 	}
-	public void setListOfEntities(List<Entity> listOfEntities) {
-		this.listOfEntities = listOfEntities;
+	public void setEntity(Entity entity) {
+		this.entity = entity;
 	}
-	
-	
-	
 
+	public String getApplicationName() {
+		return applicationName;
+	}
+
+	public void setApplicationName(String applicationName) {
+		this.applicationName = applicationName;
+	}	
 }

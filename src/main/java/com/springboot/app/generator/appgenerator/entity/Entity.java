@@ -5,6 +5,9 @@ public class Entity {
 	
 	private String name;
 	private List<Field> listOfFields;
+	private String entityNameInLowerCase;
+	private String entityNameInPluralForm;
+
 
 	public String getName() {
 		return name;
@@ -21,7 +24,20 @@ public class Entity {
 	public void setListOfFields(List<Field> listOfFields) {
 		this.listOfFields = listOfFields;
 	}
-	
-	
 
+	public String getEntityNameInLowerCase() {
+		return entityNameInLowerCase;
+	}
+
+	public void setEntityNameInLowerCase(String entityNameInLowerCase) {
+		this.entityNameInLowerCase = entityNameInLowerCase;
+	}
+
+	public String getEntityNameInPluralForm() {
+		return entityNameInPluralForm;
+	}
+
+	public void setEntityNameInPluralForm(String entityNameInPluralForm) {
+		this.entityNameInPluralForm = entityNameInPluralForm;
+	}
 }
