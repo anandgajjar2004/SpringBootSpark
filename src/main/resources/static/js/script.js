@@ -3,13 +3,41 @@ app.controller('MainCotroller', function($scope, $http) {
 	
 	$scope.fields = 
 	{
-			"applicationName" : '', 
-			"packageName" : '',
-			"listOfEntities" : [{"name":"Student","listOfFields":[{"type":"String","fieldName":"firstName"},{"type":"String","fieldName":"lastName"}]},
-								{"name":"User","listOfFields":[{"type":"String","fieldName":"firstName"},{"type":"String","fieldName":"lastName"}]}]			
+			"applicationName" : 'demo', 
+			"packageName" : 'com.example',
+			"entity" : {"name" : "Student", "listOfFields":[{"type":"String","fieldName":"firstName"},{"type":"","fieldName":""}]}						
 			};
     $scope.createApp = function(fields)
     {
+    	if(fields.applicationName == '') {
+    		alert("Please Provide Application Name");
+    		return;
+    	}
+    	
+    	if(fields.packageName == '') {
+    		alert("Please Provide Package Name");
+    		return;
+    	}
+    	
+    	if(fields.entity.name == '') {
+    		alert("Please Provide Entity Name");
+    		return;
+    	}
+    	
+    	for(var i=0;i<fields.entity.listOfFields.length;i++) {
+    		if(fields.entity.listOfFields[i].type == '') {
+    			alert("Please Provide Type at Position "+(i+1));
+    			return;
+    		}
+    		if(fields.entity.listOfFields[i].fieldName == '') {
+    			alert("Please Provide Field Name at Position "+(i+1));
+    			return;
+    		}
+    		
+    		
+    	}
+    	
+    	
     	data = fields;
     	$http({
 			method : 'POST',
@@ -25,20 +53,15 @@ app.controller('MainCotroller', function($scope, $http) {
 			  alert("Error");
 		  });
     };	
-
-    $scope.addEntity = function(fields)
-    {
-    	fields.listOfEntities.push({name: "", listOfFields : [{name: "", type: ""}]});
-    };		
-    
+  
     $scope.addField = function(field)
     {    		
     	field.push({name: "", type: ""});
     };
 
-    $scope.removePage = function(index)
+    $scope.deleteField = function(index)
     {
-    	$scope.fields.pages.splice(index, 1);
+    	$scope.fields.entity.listOfFields.splice(index, 1);
     };		
 
     $scope.createDownloadLink = function(anchorSelector, str, fileName){        
