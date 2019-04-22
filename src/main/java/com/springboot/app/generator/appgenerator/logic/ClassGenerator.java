@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.zip.ZipOutputStream;
 
+import org.apache.commons.io.FileUtils;
+
 import com.springboot.app.generator.appgenerator.entity.Application;
 import com.springboot.app.generator.appgenerator.entity.Entity;
 import com.springboot.app.generator.appgenerator.entity.Field;
@@ -30,16 +32,20 @@ public class ClassGenerator {
 		
 		try
 		{
+		//Delete Existing Zip File
 		File file = new File(applicationName+".zip");
 		file.delete();
 			
+		//Create New Zip File
 		FileOutputStream fos = new FileOutputStream(applicationName+".zip");
 		ZipOutputStream zos = new ZipOutputStream(fos);
 		
-				
+		//Get List of Folder and Sub Folder name from Package
 		List<String> list = Util.getFileStructure(packageName);
 		filePath = list.get(list.size()-1);
 		
+		
+		//Create List of Folder and Sub Folder name from Package
 		for(String s : list)
 		{
 			File dir = new File(s);
@@ -65,10 +71,12 @@ public class ClassGenerator {
 		fileNane = createViewHtmlFile();
 		Util.addToZipFile(fileNane, zos);
 		fileNane = createListHtmlFile();
-		Util.addToZipFile(fileNane, zos);
-		
+		Util.addToZipFile(fileNane, zos);		
 		zos.close();
 		fos.close();
+		
+		FileUtils.deleteDirectory(new File(list.get(0)));
+		FileUtils.deleteDirectory(new File("templates"));
 		}
 		catch(Exception se){
 			se.printStackTrace();
