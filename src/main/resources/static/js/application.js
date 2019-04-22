@@ -5,7 +5,7 @@ app.controller('MainCotroller', function($scope, $http) {
 	{
 			"applicationName" : 'demo', 
 			"packageName" : 'com.example',
-			"entity" : {"name" : "Student", "listOfFields":[{"type":"String","fieldName":"firstName"},{"type":"","fieldName":""}]}						
+			"entity" : {"name" : "User", "listOfFields":[{"type":"String","fieldName":"firstName"},{"type":"","fieldName":""}]}						
 			};
     $scope.createApp = function(fields)
     {
