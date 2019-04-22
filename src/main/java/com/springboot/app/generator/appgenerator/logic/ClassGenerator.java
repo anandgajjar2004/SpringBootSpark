@@ -502,18 +502,21 @@ public class ClassGenerator {
 			
 			fileWriter.write("<div th:fragment=\""+entity.getEntityNameInLowerCase()+"Form\">");
 			fileWriter.write(System.lineSeparator());
-			fileWriter.write("\t<div class=\"alert alert-danger\" th:if=\"${#fields.hasErrors('*')}\">");
-			fileWriter.write(System.lineSeparator());
-			fileWriter.write("\t\t<p th:each=\"err : ${#fields.errors('*')}\" th:text=\"${err}\"></p>");
-			fileWriter.write(System.lineSeparator());
-			fileWriter.write("\t</div>");
-			fileWriter.write(System.lineSeparator());
 			for (Field f : fields) {
 				fileWriter.write("\t<div class=\"form-group\">");
 				fileWriter.write(System.lineSeparator());
 				fileWriter.write("\t\t<label for=\""+f.getFieldName()+"\">"+f.getDisplayName()+"</label>");
 				fileWriter.write(System.lineSeparator());
-				fileWriter.write("\t\t<input type=\"text\" th:field=\"*{"+f.getFieldName()+"}\" id=\""+f.getFieldName()+"\" class=\"form-control\">");
+
+				if(f.getType().equals("String")) {
+					fileWriter.write("\t\t<input type=\"text\" th:field=\"*{"+f.getFieldName()+"}\" id=\""+f.getFieldName()+"\" class=\"form-control\">");	
+				}
+				else if(f.getType().equals("Integer") || f.getType().equals("Long") ||  f.getType().equals("Double") || f.getType().equals("BigDecimal")) {
+					fileWriter.write("\t\t<input type=\"number\" th:field=\"*{"+f.getFieldName()+"}\" id=\""+f.getFieldName()+"\" class=\"form-control\">");
+				} else if(f.getType().equals("boolean")) {
+					fileWriter.write("\t\t<input type=\"checkbox\" th:field=\"*{"+f.getFieldName()+"}\" id=\""+f.getFieldName()+"\" class=\"form-control\">");
+				}
+				
 				fileWriter.write(System.lineSeparator());
 				fileWriter.write("\t\t<span th:if=\"${#fields.hasErrors('"+f.getFieldName()+"')}\" th:errors=\"*{"+f.getFieldName()+"}\"></span>");
 				fileWriter.write(System.lineSeparator());
