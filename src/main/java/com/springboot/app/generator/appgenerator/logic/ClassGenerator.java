@@ -597,7 +597,7 @@ public class ClassGenerator {
 			fileWriter.write(System.lineSeparator());
 			fileWriter.write("<body>");
 			fileWriter.write(System.lineSeparator());
-			fileWriter.write("<form action=\"#\" th:action=\"@{/"+entity.getEntityNameInPluralForm()+"/{id}(id=${student.id})}\" th:object=\"${"+entity.getEntityNameInLowerCase()+"}\" method=\"post\">");
+			fileWriter.write("<form action=\"#\" th:action=\"@{/"+entity.getEntityNameInPluralForm()+"/{id}(id=${"+entity.getEntityNameInLowerCase()+".id})}\" th:object=\"${"+entity.getEntityNameInLowerCase()+"}\" method=\"post\">");
 			fileWriter.write(System.lineSeparator());
 			fileWriter.write("\t<div th:replace=\""+entity.getEntityNameInLowerCase()+"/_form :: "+entity.getEntityNameInLowerCase()+"Form\">...</div>");			
 			fileWriter.write(System.lineSeparator());

@@ -39,17 +39,29 @@ public class FileController {
 		for(Field field : application.getEntity().getListOfFields()) {
 				String fieldName = field.getFieldName();
 				String camelCaseString = "";
-				if(fieldName.split("_").length > 1) {
-					for(String  s: fieldName.split("_")) {
-						camelCaseString = camelCaseString + s.substring(0, 1).toUpperCase() +s.substring(1).toLowerCase();
+				if(fieldName.contains("_")) {
+					if(fieldName.split("_").length > 1) {
+						for(String  s: fieldName.split("_")) {
+							camelCaseString = camelCaseString + s.substring(0, 1).toUpperCase() +s.substring(1).toLowerCase();
+						}
+						fieldName = camelCaseString.substring(0, 1).toLowerCase().concat(camelCaseString.substring(1, camelCaseString.length()));
+					} else {					
+						fieldName = fieldName.substring(0, 1).toLowerCase().concat(fieldName.substring(1, fieldName.length()));
+					}					
+				} else if(fieldName.contains(" ")) {
+					if(fieldName.split(" ").length > 1) {
+						for(String  s: fieldName.split(" ")) {
+							camelCaseString = camelCaseString + s.substring(0, 1).toUpperCase() +s.substring(1).toLowerCase();
+						}
+						fieldName = camelCaseString.substring(0, 1).toLowerCase().concat(camelCaseString.substring(1, camelCaseString.length()));
+					} else {					
+						fieldName = fieldName.substring(0, 1).toLowerCase().concat(fieldName.substring(1, fieldName.length()));
 					}
-					fieldName = camelCaseString.substring(0, 1).toLowerCase().concat(camelCaseString.substring(1, camelCaseString.length()));
-				} else {					
+				} else {
 					fieldName = fieldName.substring(0, 1).toLowerCase().concat(fieldName.substring(1, fieldName.length()));
 				}
 				field.setFieldName(fieldName);
-				String type = field.getType();				
-				
+				String type = field.getType();								
 				type = type.substring(0, 1).toUpperCase() + type.substring(1, type.length());
 				String displayName = fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1, fieldName.length()).replaceAll("(.)([A-Z])", "$1 $2");
 				String setMethodName =  "set"+fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1, fieldName.length());
