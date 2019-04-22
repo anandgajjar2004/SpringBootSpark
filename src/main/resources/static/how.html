@@ -2,9 +2,99 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>How It works ?</title>
 </head>
 <body>
-
+Step 1: Create Spring Boot Project using Spring Initializr.
+<br/> 
+Step 2: Provide Group Name and Artifact Name. 
+<br/>
+Step 3: Provide Dependency (Web, H2, JPA, Thymeleaf). H2 is optional if you are using some Other database.   
+<p style="color: red">Note: Current Version is specific to Thymeleaf as Front End. In Future i will be releasing version for Angular with Web Services.</p>  
+<img src="images/how/screen1.png" width="40%" height="40%"/>
+<br/>
+<br/>
+Step 4: Note down the base package name (<b>example : com.company.demo</b>)  
+<br/>
+<br/>
+<img src="images/how/screen2.png" width="40%" height="40%"/>
+<br/>
+<br/>
+Step 5: Now Open this tool in your browser and provide the same base package name which you have noted. (<b>example : com.company.demo</b>)
+<br/>
+Step 6: Provide Entity Name along with Number of Fields. 
+<br/>
+Step 7: Click on Generate Project.  
+<br/>
+<br/> 
+<img src="images/how/screen3.png" width="40%" height="40%"/>
+<br/>
+<br/>
+Step 7: You will be able to see 2 folders in ZIP file.
+<ul>
+	<li>Package Folder</li>
+	<li>templates Folder</li>
+</ul>
+<br/>
+<br/>
+<img src="images/how/screen4.png" width="40%" height="40%"/>
+<br/>
+<br/>
+Step 8: copy "com" folder and paste in src folder in your Project. it will ask you to override. Click on override all changes. it will not affect current changes. 
+<br/>
+<br/>
+<img src="images/how/screen5.png" width="40%" height="40%"/>
+<br/>
+<br/>
+Step 9: In ZIP file double click on templates folder and copy user folder and paste in templates folder in project as shown below. 
+<br/>
+<br/>
+<img src="images/how/screen6.png" width="40%" height="40%"/>
+<br/>
+<br/>
+Step 10: Project will be having below changes as shown in image. 
+<ul>
+	<li><b>User.java</b> under domain package</li>
+	<li><b>UserRepository.java</b> under repository package</li>
+	<li><b>UserService.java</b> under service package</li>
+	<li><b>UserSerciceImpl.java</b> under impl package</li>
+	<li><b>UserController.java</b> under controller package</li>
+	<li><b>templates/user/_form.html</b> (common form for new and edit page)</li>
+	<li><b>templates/user/new.html</b></li>
+	<li><b>templates/user/edit.html</b></li>
+	<li><b>templates/user/index.html</b></li>
+	<li><b>templates/user/show.html</b></li>		
+</ul> 
+<br/>
+<br/>
+<img src="images/how/screen7.png" width="40%" height="40%"/>
+<br/>
+<br/>
+Step 10: Now Right Click on Main Class and Run Project as Spring Boot App. 
+<br/>
+<br/>
+<img src="images/how/screen8.png" width="40%" height="40%"/>
+<br/>
+<br/>
+Step 10: Server will start at port 8080.
+<br/>
+Step 11: Open the browser and goto <a target="_blank" href="localhost:8080/users">localhost:8080/users</a>
+<br/>
+Step 12: you will be able to see list of user page.
+<br/>
+<br/>
+<img src="images/how/screen9.png" width="40%" height="40%"/>
+<br/>
+<br/>
+Step 13: Click on Add User and Feel the details. 
+<br/>
+<br/>
+<img src="images/how/screen10.png" width="40%" height="40%"/>
+<br/>
+<br/>
+Step 14: This tool Provide all basic operation for given entity. (<b>CREAT, READ, UPDATE, DELETE</b>) with listing page. 
+<br/>
+<br/>
+<img src="images/how/screen11.png" width="40%" height="40%"/>
 </body>
 </html>
