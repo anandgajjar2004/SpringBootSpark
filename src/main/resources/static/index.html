@@ -19,9 +19,9 @@
 <div class="container-fluid">
 <br/>
 <form role="form">
- <table>
+ <table width="40%">
 		<tr>
-			<td>Application Name:</td>
+			<td width="30%">Application Name:</td>
 			<td><input class="form-control" type="text" placeholder="Spring Application" ng-model="fields.applicationName" /></td>
 		</tr>
 		
@@ -44,11 +44,11 @@
       		<br/>
       		<div class="row">      	
       		</div>
-      		<br/><br/><br/><br/>
-      		<table class="table table-striped table-sm">			
+      		<br/><br/><br/>
+      		<table class="table">			
 					<tr ng-repeat="f in fields.entity.listOfFields">				
-						<td><input class="form-control" type="text" placeholder="eg name, age, etc.." ng-model="f.fieldName" style="margin-left: 5px;width: 150px;"/>&nbsp;</td>					
-						<td><select class="form-control" ng-model="f.type">				
+						<td width="35%"><input class="form-control" type="text" placeholder="eg name, age, etc.." ng-model="f.fieldName" style="margin-left: 5px"/>&nbsp;</td>					
+						<td width="35%"><select class="form-control" ng-model="f.type">				
 							<option value="String">String</option>
 							<option value="Long">Long</option>
 							<option value="BigDecimal">BigDecimal</option>
