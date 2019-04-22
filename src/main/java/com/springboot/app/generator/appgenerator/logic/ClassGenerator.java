@@ -464,6 +464,24 @@ public class ClassGenerator {
 		return fileName;
 	}
 	
+	public void addStyleSheet(FileWriter fileWriter) {
+		try {
+		fileWriter.write("\t\t<style type=\"text/css\">");
+		fileWriter.write(System.lineSeparator());
+		fileWriter.write("\t\t\tbody  {  font-family: verdana, arial, helvetica, sans-serif; font-size: 13px; line-height: 18px; margin: 10px; }");
+		fileWriter.write(System.lineSeparator());
+		fileWriter.write("\t\t\tlabel { display: block; }");
+		fileWriter.write(System.lineSeparator());
+		fileWriter.write("\t\t\tth    { padding-bottom: 5px; }");
+		fileWriter.write(System.lineSeparator());
+		fileWriter.write("\t\t\ttd    { padding-bottom: 7px; padding-left: 5px; padding-right: 5px; }");
+		fileWriter.write(System.lineSeparator());
+		fileWriter.write("\t\t</style>");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	private String createFormHtmlFile(String templateEntityDirectory) 
 	{
 		String fileName = templateEntityDirectory + "/_form.html";
@@ -511,9 +529,9 @@ public class ClassGenerator {
 			fileWriter.write(System.lineSeparator());
 			fileWriter.write("<html xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:th=\"http://www.thymeleaf.org\">");
 			fileWriter.write(System.lineSeparator());
-			fileWriter.write("\t<head>");
+			fileWriter.write("\t<head>");			
 			fileWriter.write(System.lineSeparator());
-			fileWriter.write("\t\t<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\">");
+			addStyleSheet(fileWriter);
 			fileWriter.write(System.lineSeparator());
 			fileWriter.write("\t\t<title>Add "+entity.getName()+"</title>");
 			fileWriter.write(System.lineSeparator());
@@ -525,7 +543,9 @@ public class ClassGenerator {
 			fileWriter.write(System.lineSeparator());
 			fileWriter.write("\t<div th:replace=\""+entity.getEntityNameInLowerCase()+"/_form :: "+entity.getEntityNameInLowerCase()+"Form\">...</div>");			
 			fileWriter.write(System.lineSeparator());
-			fileWriter.write("\t<input type=\"submit\" class=\"btn btn-primary\" value=\"Add "+entity.getName()+"\">");
+			fileWriter.write("<br/>");
+			fileWriter.write(System.lineSeparator());
+			fileWriter.write("\t<input type=\"submit\" value=\"Add "+entity.getName()+"\">");
 			fileWriter.write(System.lineSeparator());
 			fileWriter.write("</form>");
 			fileWriter.write(System.lineSeparator());
@@ -552,9 +572,9 @@ public class ClassGenerator {
 			fileWriter.write(System.lineSeparator());
 			fileWriter.write("<html xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:th=\"http://www.thymeleaf.org\">");
 			fileWriter.write(System.lineSeparator());
-			fileWriter.write("\t<head>");
+			fileWriter.write("\t<head>");			
 			fileWriter.write(System.lineSeparator());
-			fileWriter.write("\t\t<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\">");
+			addStyleSheet(fileWriter);
 			fileWriter.write(System.lineSeparator());
 			fileWriter.write("\t\t<title>Add "+entity.getName()+"</title>");
 			fileWriter.write(System.lineSeparator());
@@ -566,8 +586,10 @@ public class ClassGenerator {
 			fileWriter.write(System.lineSeparator());
 			fileWriter.write("\t<div th:replace=\""+entity.getEntityNameInLowerCase()+"/_form :: "+entity.getEntityNameInLowerCase()+"Form\">...</div>");			
 			fileWriter.write(System.lineSeparator());
+			fileWriter.write("<br/>");
+			fileWriter.write(System.lineSeparator());
 			fileWriter.write("\t<input type=\"hidden\" th:field=\"*{id}\" id=\"id\" class=\"form-control\">");			
-			fileWriter.write("\t<input type=\"submit\" class=\"btn btn-primary\" value=\"Update "+entity.getName()+"\">");
+			fileWriter.write("\t<input type=\"submit\" value=\"Update "+entity.getName()+"\">");
 			fileWriter.write(System.lineSeparator());
 			fileWriter.write("</form>");
 			fileWriter.write(System.lineSeparator());
@@ -591,9 +613,9 @@ public class ClassGenerator {
 			fileWriter.write(System.lineSeparator());
 			fileWriter.write("<html xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:th=\"http://www.thymeleaf.org\">");
 			fileWriter.write(System.lineSeparator());
-			fileWriter.write("\t<head>");
+			fileWriter.write("\t<head>");			
 			fileWriter.write(System.lineSeparator());
-			fileWriter.write("\t\t<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\">");
+			addStyleSheet(fileWriter);
 			fileWriter.write(System.lineSeparator());
 			fileWriter.write("\t\t<title>Show "+entity.getName()+"</title>");
 			fileWriter.write(System.lineSeparator());
@@ -603,7 +625,7 @@ public class ClassGenerator {
 			fileWriter.write(System.lineSeparator());
 			fileWriter.write("<h5>"+entity.getName()+"</h5>");
 			fileWriter.write(System.lineSeparator());
-			fileWriter.write("<table class=\"table table-striped\">");
+			fileWriter.write("<table>");
 			fileWriter.write(System.lineSeparator());
 			fileWriter.write("\t<thead>");
 			fileWriter.write(System.lineSeparator());
@@ -621,7 +643,7 @@ public class ClassGenerator {
 			fileWriter.write(System.lineSeparator());
 			fileWriter.write("\t</table>");
 			fileWriter.write(System.lineSeparator());
-			fileWriter.write("\t<a class=\"btn btn-outline-primary\"  th:href=\"@{/"+entity.getEntityNameInLowerCase()+"/edit/{id}(id=${"+entity.getEntityNameInLowerCase()+".id})}\">Edit</a>");			
+			fileWriter.write("\t<a th:href=\"@{/"+entity.getEntityNameInLowerCase()+"/edit/{id}(id=${"+entity.getEntityNameInLowerCase()+".id})}\">Edit</a>");			
 			fileWriter.write("</body>");
 			fileWriter.write(System.lineSeparator());
 			fileWriter.write("</html>");
@@ -642,9 +664,9 @@ public class ClassGenerator {
 			fileWriter.write(System.lineSeparator());
 			fileWriter.write("<html xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:th=\"http://www.thymeleaf.org\">");
 			fileWriter.write(System.lineSeparator());
-			fileWriter.write("<head>");
+			fileWriter.write("<head>");						
 			fileWriter.write(System.lineSeparator());
-			fileWriter.write("<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\">");
+			addStyleSheet(fileWriter);
 			fileWriter.write(System.lineSeparator());
 			fileWriter.write("<title>List of "+entity.getName()+"</title>");
 			fileWriter.write(System.lineSeparator());
@@ -654,7 +676,7 @@ public class ClassGenerator {
 			fileWriter.write(System.lineSeparator());
 			fileWriter.write("<h2>"+entity.getEntityNameInPluralForm()+"</h2>");
 			fileWriter.write(System.lineSeparator());
-			fileWriter.write("<table class=\"table table-striped\">");
+			fileWriter.write("<table>");
 			fileWriter.write(System.lineSeparator());
 			fileWriter.write("<thead>");
 			fileWriter.write(System.lineSeparator());
@@ -664,10 +686,10 @@ public class ClassGenerator {
 				fileWriter.write("<th>"+f.getDisplayName()+"</th>");
 				fileWriter.write(System.lineSeparator());
 			}
-			fileWriter.write("<th>");
+			fileWriter.write("<th colspan=\"3\">");
 			fileWriter.write(System.lineSeparator());
 			fileWriter.write(System.lineSeparator());
-			fileWriter.write("<th>");
+			fileWriter.write("</th>");
 			fileWriter.write(System.lineSeparator());
 			fileWriter.write("</tr>");
 			fileWriter.write(System.lineSeparator());
@@ -681,9 +703,7 @@ public class ClassGenerator {
 				fileWriter.write("<td><a th:text=\"${"+entity.getEntityNameInLowerCase()+"."+f.getFieldName()+"}\"></a></td>");
 				fileWriter.write(System.lineSeparator());
 			}
-			fileWriter.write("<td align=\"right\"><a th:href=\"@{/"+entity.getEntityNameInLowerCase()+"/show/{id}(id=${"+entity.getEntityNameInLowerCase()+".id})}\">Show</a></td>");
-			fileWriter.write(System.lineSeparator());
-			fileWriter.write("<td align=\"right\"><a th:href=\"@{/"+entity.getEntityNameInLowerCase()+"/delete/{id}(id=${"+entity.getEntityNameInLowerCase()+".id})}\">Delete</a></td>");
+			fileWriter.write("<td><a th:href=\"@{/"+entity.getEntityNameInLowerCase()+"/show/{id}(id=${"+entity.getEntityNameInLowerCase()+".id})}\">Show</a></td><td><a th:href=\"@{/"+entity.getEntityNameInLowerCase()+"/edit/{id}(id=${"+entity.getEntityNameInLowerCase()+".id})}\">Edit</a></td><td><a th:href=\"@{/"+entity.getEntityNameInLowerCase()+"/delete/{id}(id=${"+entity.getEntityNameInLowerCase()+".id})}\">Delete</a></td>");
 			fileWriter.write(System.lineSeparator());
 			fileWriter.write("</tr>");
 			fileWriter.write(System.lineSeparator());
@@ -691,7 +711,7 @@ public class ClassGenerator {
 			fileWriter.write(System.lineSeparator());
 			fileWriter.write("</table>");
 			fileWriter.write(System.lineSeparator());
-			fileWriter.write("<p><a class=\"btn btn-outline-primary\" href=\"/"+entity.getEntityNameInLowerCase()+"/new\">Add "+entity.getName()+"</a>");
+			fileWriter.write("<p><a href=\"/"+entity.getEntityNameInLowerCase()+"/new\">Add "+entity.getName()+"</a>");
 			fileWriter.write(System.lineSeparator());
 			fileWriter.write("</body>");
 			fileWriter.write(System.lineSeparator());
