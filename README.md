@@ -1,4 +1,4 @@
-# Spring Boot Application Generator
+# SpringBoot Spark
 
 Tired of Creating Entity Class, Repository Interface, Service Class, HTML Files and Controller for Given Fields ??
 
@@ -21,6 +21,10 @@ you can clone this repository in local machine and start the server.
 URL will be. 
 
 [http://localhost:9999/](http://localhost:9999/)
+
+or you can use online tool which hosted on my website. 
+
+[https://throwandthrows.com:9999](http://throwandthrows.com/)
 
 Provide the **Application Name, Base package Name** which you have given while creating you spring boot application  (for example: **com.example**) as mentioned above. 
 
