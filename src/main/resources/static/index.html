@@ -1,15 +1,10 @@
 <html ng-app="angularAppGenerator" ng-controller="MainCotroller">
 <head>
-	<title>SpringBoot Spark</title>
+	<title>Spring Boot Application Generator</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>	
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">	
 	<link rel="stylesheet" href="css/application.css">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<script src="js/application.js"></script>
+
 	<script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -25,7 +20,7 @@
 <nav class="navbar navbar-light bg-light">
   <a class="navbar-brand" href="#">
     <img src="images/spring_icon.png" width="30" height="30" class="d-inline-block align-top" alt="">
-    SpringBoot Spark
+    Spring Boot Spark
   </a>
   <ul class="navbar-nav mr-auto mt-2 mt-lg-0">      
       <li class="nav-item">
@@ -40,26 +35,37 @@
 <div class="container-fluid">
 <br/>
 <form role="form">
- <table width="35%">
-		<tr>
-			<td width="30%">Application Name:</td>
-			<td><input class="form-control" type="text" placeholder="Spring Application" ng-model="fields.applicationName" /></td>
-		</tr>
-		
-		 <tr>
-			<td>Base Package Name:</label></td>
-			<td><input class="form-control" type="text" placeholder="com.company.spring" ng-model="fields.packageName" /></td>
-		</tr>
-		
-		<tr>
-      			<td>Entity Name: </td>
-      			<td><input class="form-control" type="text" placeholder="Employee" ng-model="fields.entity.name" /></td>
-      	</tr>		
-		
-		<tr>
-			<td colspan="2">
-			<hr>							
-      		<table class="table table-bordered">			
+<div class="col-md-4 col-md-offset-4">
+  <div class="row">
+    <div class="col">
+      Application Name:
+    </div>
+    <div class="col">
+      <input class="form-control" type="text" placeholder="Spring Application" ng-model="fields.applicationName" />
+    </div>
+  </div>
+  <br/>
+  <div class="row">
+    <div class="col">
+		Base Package Name:
+    </div>
+    <div class="col">
+      <input class="form-control" type="text" placeholder="com.company.spring" ng-model="fields.packageName" />
+    </div>
+  </div>
+  <br/>  
+  <div class="row">
+    <div class="col">
+	Entity Name:
+    </div>
+    <div class="col">
+      <input class="form-control" type="text" placeholder="Employee" ng-model="fields.entity.name" />
+    </div>
+  </div>  
+</div>
+<br/>
+<div class="col-md-4 col-md-offset-4">
+     		<table class="table table-bordered">			
 					<tr ng-repeat="f in fields.entity.listOfFields">				
 						<td><input class="form-control" type="text" placeholder="eg name, age, etc.." ng-model="f.fieldName"/></td>					
 						<td width="35%"><select class="form-control" ng-model="f.type">				
@@ -76,13 +82,16 @@
 			</table>			
       								
       		<button class="btn btn-outline-success" ng-click="addField(fields.entity.listOfFields)">Add New Field</button>      		
-			</td>
-		</tr>
-  </table>
+  </div>
   </form>
 </div>  	  
   <hr/>
   <div align="center">
   <button id="export" download="" ng-click="createApp(fields);" type="submit" class="btn btn-outline-success">Generate Project</button>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="js/application.js"></script>
 </body>
 </html>
