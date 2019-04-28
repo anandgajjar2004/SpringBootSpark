@@ -24,7 +24,7 @@ URL will be.
 
 or you can use online tool which hosted on my website. 
 
-[http://throwandthrows.com](https://throwandthrows.com:9999)
+[http://throwandthrows.com](http://throwandthrows.com)
 
 Provide the **Application Name, Base package Name** which you have given while creating you spring boot application  (for example: **com.example**) as mentioned above. 
 
