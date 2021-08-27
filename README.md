@@ -1,8 +1,8 @@
 # SpringBoot Spark
 
-Tired of Creating Entity Class, Repository Interface, Service Class, HTML Files and Controller for Given Fields ??
+Creating Entity Class, Repository Interface, Service Class, HTML Files and Controller for list of fields is still manual process in many industries.
 
-Well This application will help you to create All in one shot. you just have to provide number of fields with name and type and generate everything you need. 
+This project will help you to create All in one shot. you just have to provide number of fields with name and type and it will generate everything you need. 
 
 ### Prerequisites
 
