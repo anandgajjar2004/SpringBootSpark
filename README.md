@@ -1,28 +1,29 @@
 # SpringBoot Spark
 
-Creating Entity Class, Repository Interface, Service Class, HTML Files and Controller for list of fields is still manual process in many industries.
 
-This project will help you to create All in one shot. you just have to provide number of fields with name and type and it will generate everything you need. 
+Creating Entity Classes, Repository Interfaces, Service Classes, HTML Files, and Controllers for a list of fields remains a manual process in many industries.
+
+This project streamlines the process, allowing you to create everything in one go. Simply provide the number of fields, along with their names and types, and it will generate all the necessary components for you.
 
 ### Prerequisites
 
-First you need to create Spring boot application using below URL. 
+First, create a Spring Boot application using the following URL:
 
 [https://start.spring.io/](https://start.spring.io/)
 
-and add the **Web, H2, Thymeleaf and JPA** dependency for quick start. (H2 is optional if you are using some other database)
+Add the **Web, H2, Thymeleaf and JPA** dependency for quick start. (H2 is optional if you are using another database.)
 
-also note it down the package name (Group) which you have provided while creating application.  (for example: **com.example**)
+Also, note the package name (Group) you provide while creating the application (for example: **com.example**)
 
 ### Generate required Classes, Interface and HTML files. 
 
-you can clone this repository in local machine and start the server. 
+Clone this repository to your local machine and start the server.
 
-URL will be. 
+The URL will be:
 
 [http://localhost:9999/](http://localhost:9999/)
 
-Provide the **Application Name, Base package Name** which you have given while creating you spring boot application  (for example: **com.example**) as mentioned above. 
+Provide the **Application Name, Base package Name** you used while creating your Spring Boot application (for example: **com.example**) as mentioned above. 
 
 Give the list of **Fields** for your Entity Class with Type and click on Generate Project. 
 
