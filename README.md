@@ -22,10 +22,6 @@ URL will be.
 
 [http://localhost:9999/](http://localhost:9999/)
 
-or you can use online tool which hosted on my website. 
-
-[http://throwandthrows.com](http://throwandthrows.com)
-
 Provide the **Application Name, Base package Name** which you have given while creating you spring boot application  (for example: **com.example**) as mentioned above. 
 
 Give the list of **Fields** for your Entity Class with Type and click on Generate Project. 
